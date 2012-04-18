@@ -564,7 +564,7 @@ public class Solo {
 	 *
 	 */
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void assertCurrentActivity(String message, Class expectedClass)
 	{
 		asserter.assertCurrentActivity(message, expectedClass);
@@ -596,7 +596,7 @@ public class Solo {
 	 *
 	 */
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void assertCurrentActivity(String message, Class expectedClass,
 			boolean isNewInstance) {
 		asserter.assertCurrentActivity(message, expectedClass, isNewInstance);
