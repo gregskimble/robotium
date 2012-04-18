@@ -1,4 +1,4 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 class Sleeper {
 

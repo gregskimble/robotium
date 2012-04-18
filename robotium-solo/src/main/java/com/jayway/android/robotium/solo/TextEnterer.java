@@ -1,4 +1,4 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import junit.framework.Assert;
 import android.app.Instrumentation;
@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 /**
  * Contains setEditText() to enter text into text fields.
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
  *
  */
@@ -20,10 +20,10 @@ class TextEnterer{
 
 	/**
 	 * Constructs this object.
-	 * 
+	 *
 	 * @param inst the {@code Instrumentation} instance.
 	 * @param clicker the {@code Clicker} instance.
-	 * 
+	 *
 	 */
 
 	public TextEnterer(Instrumentation inst, Clicker clicker) {
@@ -34,8 +34,8 @@ class TextEnterer{
 
 	/**
 	 * Sets an {@code EditText} text
-	 * 
-	 * @param index the index of the {@code EditText} 
+	 *
+	 * @param index the index of the {@code EditText}
 	 * @param text the text that should be set
 	 */
 
@@ -47,9 +47,10 @@ class TextEnterer{
 
 			inst.runOnMainSync(new Runnable()
 			{
+				@Override
 				public void run()
 				{
-					editText.setInputType(InputType.TYPE_NULL); 
+					editText.setInputType(InputType.TYPE_NULL);
 					editText.performClick();
 					if(text.equals(""))
 						editText.setText(text);
@@ -61,18 +62,19 @@ class TextEnterer{
 			});
 		}
 	}
-	
+
 	/**
-	 * Types text in an {@code EditText} 
-	 * 
-	 * @param index the index of the {@code EditText} 
+	 * Types text in an {@code EditText}
+	 *
+	 * @param index the index of the {@code EditText}
 	 * @param text the text that should be typed
 	 */
-	
+
 	public void typeText(final EditText editText, final String text){
 		if(editText != null){
 			inst.runOnMainSync(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					editText.setInputType(InputType.TYPE_NULL);

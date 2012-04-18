@@ -1,6 +1,7 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
+
 import android.app.Instrumentation;
 import android.os.SystemClock;
 import android.view.MotionEvent;
@@ -14,9 +15,9 @@ import android.widget.ScrollView;
 /**
  * Contains scroll methods. Examples are scrollDown(), scrollUpList(),
  * scrollToSide().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Scroller {
@@ -29,7 +30,7 @@ class Scroller {
 	private final ActivityUtils activityUtils;
 	private final ViewFetcher viewFetcher;
 	private final Sleeper sleeper;
-	
+
 
 	/**
 	 * Constructs this object.
@@ -92,16 +93,16 @@ class Scroller {
 
 	/**
 	 * Scrolls a ScrollView.
-	 * 
+	 *
 	 * @param direction the direction to be scrolled
 	 * @return {@code true} if more scrolling can be done
-	 * 
+	 *
 	 */
 
 	private boolean scrollScrollView(int direction, ArrayList<ScrollView> scrollViews){
 		final ScrollView scroll = viewFetcher.getView(ScrollView.class, scrollViews);
 		int scrollAmount = 0;
-		
+
 		if(scroll != null){
 			int height = scroll.getHeight();
 			height--;
@@ -125,8 +126,8 @@ class Scroller {
 		}
 		return false;
 	}
-	
-	
+
+
 	/**
 	 * Scroll the list to a given line
 	 * @param listView the listView to scroll
@@ -135,6 +136,7 @@ class Scroller {
 
 	private void scrollScrollViewTo(final ScrollView scrollView, final int x, final int y){
 		inst.runOnMainSync(new Runnable(){
+			@Override
 			public void run(){
 				scrollView.scrollBy(x, y);
 			}
@@ -144,10 +146,10 @@ class Scroller {
 
 	/**
 	 * Scrolls up and down.
-	 * 
+	 *
 	 * @param direction the direction in which to scroll
 	 * @return {@code true} if more scrolling can be done
-	 * 
+	 *
 	 */
 
 	public boolean scroll(int direction) {
@@ -156,13 +158,13 @@ class Scroller {
 
 		if (listViews.size() > 0) {
 			return scrollList(ListView.class, null, direction, listViews);
-		} 
-		
+		}
+
 		final ArrayList<GridView> gridViews = RobotiumUtils.filterViews(GridView.class, viewList);
 
 		if (gridViews.size() > 0) {
 			return scrollList(GridView.class, null, direction, gridViews);
-		} 
+		}
 
 		final ArrayList<ScrollView> scrollViews = RobotiumUtils.filterViews(ScrollView.class, viewList);
 
@@ -174,17 +176,17 @@ class Scroller {
 
 	/**
 	 * Scrolls a list.
-	 * 
+	 *
 	 * @param listIndex the list to be scrolled
 	 * @param direction the direction to be scrolled
 	 * @return {@code true} if more scrolling can be done
-	 * 
+	 *
 	 */
 
 	public <T extends AbsListView> boolean scrollList(Class<T> classToFilterBy, T absListView, int direction, ArrayList<T> listViews) {
-		
+
 		if(absListView == null)
-			absListView = (T) viewFetcher.getView(classToFilterBy, listViews);
+			absListView = viewFetcher.getView(classToFilterBy, listViews);
 
 		if(absListView == null)
 			return false;
@@ -194,10 +196,10 @@ class Scroller {
 				scrollListToLine(absListView, absListView.getLastVisiblePosition());
 				return false;
 			}
-			
+
 			if(absListView.getFirstVisiblePosition() != absListView.getLastVisiblePosition())
 				scrollListToLine(absListView, absListView.getLastVisiblePosition());
-	
+
 			else
 				scrollListToLine(absListView, absListView.getFirstVisiblePosition()+1);
 
@@ -212,16 +214,16 @@ class Scroller {
 
 			if(lineToScrollTo == absListView.getLastVisiblePosition())
 				lineToScrollTo--;
-			
+
 			if(lineToScrollTo < 0)
 				lineToScrollTo = 0;
 
 			scrollListToLine(absListView, lineToScrollTo);
-		}	
+		}
 		sleeper.sleep();
 		return true;
 	}
-	
+
 
 	/**
 	 * Scroll the list to a given line
@@ -230,14 +232,15 @@ class Scroller {
 	 */
 
 	private <T extends AbsListView> void scrollListToLine(final T view, final int line){
-		
+
 		final int lineToMoveTo;
 		if(view instanceof GridView)
 			lineToMoveTo = line+1;
 		else
 			lineToMoveTo = line;
-	
+
 		inst.runOnMainSync(new Runnable(){
+			@Override
 			public void run(){
 				view.setSelection(lineToMoveTo);
 			}

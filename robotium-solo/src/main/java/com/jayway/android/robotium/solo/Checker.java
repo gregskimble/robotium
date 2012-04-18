@@ -1,6 +1,7 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
+
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
@@ -9,29 +10,29 @@ import android.widget.TextView;
 /**
  * Contains various check methods. Examples are: isButtonChecked(),
  * isSpinnerTextSelected.
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Checker {
-	
+
 	private final ViewFetcher viewFetcher;
 	private final Waiter waiter;
 
 	/**
 	 * Constructs this object.
-	 * 
+	 *
 	 * @param viewFetcher the {@code ViewFetcher} instance.
      * @param waiter the {@code Waiter} instance
 	 */
-	
+
 	public Checker(ViewFetcher viewFetcher, Waiter waiter){
 		this.viewFetcher = viewFetcher;
 		this.waiter = waiter;
 	}
 
-	
+
 	/**
 	 * Checks if a {@link CompoundButton} with a given index is checked.
 	 *
@@ -39,12 +40,12 @@ class Checker {
 	 * @param index of the {@code CompoundButton} to check. {@code 0} if only one is available
 	 * @return {@code true} if {@code CompoundButton} is checked and {@code false} if it is not checked
 	 */
-	
+
 	public <T extends CompoundButton> boolean isButtonChecked(Class<T> expectedClass, int index)
 	{
 		return (waiter.waitForAndGetView(index, expectedClass).isChecked());
 	}
-	
+
 	/**
 	 * Checks if a {@link CompoundButton} with a given text is checked.
 	 *
@@ -52,7 +53,7 @@ class Checker {
 	 * @param text the text that is expected to be checked
 	 * @return {@code true} if {@code CompoundButton} is checked and {@code false} if it is not checked
 	 */
-	
+
 	public <T extends CompoundButton> boolean isButtonChecked(Class<T> expectedClass, String text)
 	{
 		waiter.waitForText(text, 0, 10000);
@@ -63,7 +64,7 @@ class Checker {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Checks if a {@link CheckedTextView} with a given text is checked.
 	 *
@@ -71,7 +72,7 @@ class Checker {
 	 * @param text the text that is expected to be checked
 	 * @return {@code true} if {@code CheckedTextView} is checked and {@code false} if it is not checked
 	 */
-	
+
 	public boolean isCheckedTextChecked(String text)
 	{
 		waiter.waitForText(text, 0, 10000);
@@ -82,19 +83,19 @@ class Checker {
 		}
 		return false;
 	}
-	
-	
+
+
 	/**
 	 * Checks if a given text is selected in any {@link Spinner} located on the current screen.
 	 * @param text the text that is expected to be selected
 	 * @return {@code true} if the given text is selected in any {@code Spinner} and false if it is not
-	 * 
+	 *
 	 */
-	
+
 	public boolean isSpinnerTextSelected(String text)
 	{
 		waiter.waitForAndGetView(0, Spinner.class);
-				
+
 		ArrayList<Spinner> spinnerList = viewFetcher.getCurrentViews(Spinner.class);
 		for(int i = 0; i < spinnerList.size(); i++){
 			if(isSpinnerTextSelected(i, text))
@@ -102,18 +103,18 @@ class Checker {
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Checks if a given text is selected in a given {@link Spinner} 
+	 * Checks if a given text is selected in a given {@link Spinner}
 	 * @param spinnerIndex the index of the spinner to check. 0 if only one spinner is available
 	 * @param text the text that is expected to be selected
 	 * @return true if the given text is selected in the given {@code Spinner} and false if it is not
 	 */
-	
+
 	public boolean isSpinnerTextSelected(int spinnerIndex, String text)
 	{
 		Spinner spinner = waiter.waitForAndGetView(spinnerIndex, Spinner.class);
-		
+
 		TextView textView = (TextView) spinner.getChildAt(0);
 		if(textView.getText().equals(text))
 			return true;

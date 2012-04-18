@@ -1,9 +1,11 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
 import junit.framework.Assert;
+import android.app.Activity;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.TextView;
@@ -11,9 +13,9 @@ import android.widget.TextView;
 /**
  * Contains various wait methods. Examples are: waitForText(),
  * waitForView().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Waiter {
@@ -83,7 +85,7 @@ class Waiter {
 
 	/**
 	 * Waits for a view to be shown.
-	 * 
+	 *
 	 * @param viewClass the {@code View} class to wait for
 	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be shown. {@code 0} means any number of matches
 	 * @return {@code true} if view is shown and {@code false} if it is not shown before the timeout
@@ -112,9 +114,9 @@ class Waiter {
 
 	/**
 	 * Waits for a view to be shown.
-	 * 
+	 *
 	 * @param viewClass the {@code View} class to wait for
-	 * @param index the index of the view that is expected to be shown. 
+	 * @param index the index of the view that is expected to be shown.
 	 * @param timeout the amount of time in milliseconds to wait
 	 * @param scroll {@code true} if scrolling should be performed
 	 * @return {@code true} if view is shown and {@code false} if it is not shown before the timeout
@@ -133,7 +135,7 @@ class Waiter {
 			if(foundMatchingView)
 				return true;
 
-			if(scroll) 
+			if(scroll)
 				scroller.scroll(Scroller.DOWN);
 		}
 		return false;
@@ -141,8 +143,8 @@ class Waiter {
 
 	/**
 	 * Waits for two views to be shown.
-	 * 
-	 * @param viewClass the first {@code View} class to wait for 
+	 *
+	 * @param viewClass the first {@code View} class to wait for
 	 * @param viewClass2 the second {@code View} class to wait for
 	 * @return {@code true} if any of the views are shown and {@code false} if none of the views are shown before the timeout
 	 */
@@ -168,9 +170,9 @@ class Waiter {
 
 	/**
 	 * Waits for a certain view. Default timeout is 20 seconds.
-	 * 
+	 *
 	 * @param view the view to wait for
-	 * 
+	 *
 	 * @return {@code true} if view is shown and {@code false} if it is not shown before the timeout
 	 */
 
@@ -179,11 +181,11 @@ class Waiter {
 	}
 
 	/**
-	 * Waits for a certain view. 
-	 * 
+	 * Waits for a certain view.
+	 *
 	 * @param view the view to wait for
 	 * @param timeout the amount of time in milliseconds to wait
-	 * 
+	 *
 	 * @return {@code true} if view is shown and {@code false} if it is not shown before the timeout
 	 */
 
@@ -193,11 +195,11 @@ class Waiter {
 
 	/**
 	 * Waits for a certain view.
-	 * 
+	 *
 	 * @param view the view to wait for
 	 * @param timeout the amount of time in milliseconds to wait
 	 * @param scroll {@code true} if scrolling should be performed
-	 * 
+	 *
 	 * @return {@code true} if view is shown and {@code false} if it is not shown before the timeout
 	 */
 
@@ -214,7 +216,7 @@ class Waiter {
 				return true;
 			}
 
-			if(scroll) 
+			if(scroll)
 				scroller.scroll(Scroller.DOWN);
 		}
 		return false;
@@ -223,7 +225,7 @@ class Waiter {
 
 	/**
 	 * Waits for a certain view.
-	 * 
+	 *
 	 * @param view the id of the view to wait for
 	 * @return {@code true} if view is shown and {@code false} if it is not shown before the timeout
 	 */
@@ -251,7 +253,7 @@ class Waiter {
 	 *
 	 * @param text the text that needs to be shown
 	 * @return {@code true} if text is found and {@code false} if it is not found before the timeout
-	 * 
+	 *
 	 */
 
 	public boolean waitForText(String text) {
@@ -259,12 +261,12 @@ class Waiter {
 	}
 
 	/**
-	 * Waits for a text to be shown. Default timeout is 20 seconds. 
-	 * 
+	 * Waits for a text to be shown. Default timeout is 20 seconds.
+	 *
 	 * @param text the text that needs to be shown
 	 * @param expectedMinimumNumberOfMatches the minimum number of matches of text that must be shown. {@code 0} means any number of matches
 	 * @return {@code true} if text is found and {@code false} if it is not found before the timeout
-	 * 
+	 *
 	 */
 
 	public boolean waitForText(String text, int expectedMinimumNumberOfMatches) {
@@ -279,7 +281,7 @@ class Waiter {
 	 * @param expectedMinimumNumberOfMatches the minimum number of matches of text that must be shown. {@code 0} means any number of matches
 	 * @param timeout the the amount of time in milliseconds to wait
 	 * @return {@code true} if text is found and {@code false} if it is not found before the timeout
-	 * 
+	 *
 	 */
 
 	public boolean waitForText(String text, int expectedMinimumNumberOfMatches, long timeout)
@@ -295,11 +297,11 @@ class Waiter {
 	 * @param timeout the the amount of time in milliseconds to wait
 	 * @param scroll {@code true} if scrolling should be performed
 	 * @return {@code true} if text is found and {@code false} if it is not found before the timeout
-	 * 
+	 *
 	 */
 
 	public boolean waitForText(String text, int expectedMinimumNumberOfMatches, long timeout, boolean scroll) {
-		return waitForText(text, expectedMinimumNumberOfMatches, timeout, scroll, false);	
+		return waitForText(text, expectedMinimumNumberOfMatches, timeout, scroll, false);
 	}
 
 	/**
@@ -311,7 +313,7 @@ class Waiter {
 	 * @param scroll {@code true} if scrolling should be performed
 	 * @param onlyVisible {@code true} if only visible text views should be waited for
 	 * @return {@code true} if text is found and {@code false} if it is not found before the timeout
-	 * 
+	 *
 	 */
 
 	public boolean waitForText(String text, int expectedMinimumNumberOfMatches, long timeout, boolean scroll, boolean onlyVisible) {
@@ -335,11 +337,11 @@ class Waiter {
 
 	/**
 	 * Waits for and returns a view
-	 * 
+	 *
 	 * @param index the index of the view
 	 * @param classToFilterby the class to filter
 	 * @return view
-	 * 
+	 *
 	 */
 
 	public <T extends View> T waitForAndGetView(int index, Class<T> classToFilterBy){

@@ -1,4 +1,4 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
@@ -9,9 +9,9 @@ import android.widget.TimePicker;
 /**
  * Contains set methods. Examples are setDatePicker(),
  * setTimePicker().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Setter{
@@ -46,6 +46,7 @@ class Setter{
 
 			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					try{
@@ -71,6 +72,7 @@ class Setter{
 
 			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					try{
@@ -87,7 +89,7 @@ class Setter{
 	 * Sets the progress of a given {@link ProgressBar}. Examples are SeekBar and RatingBar.
 	 * @param progressBar the {@code ProgressBar}
 	 * @param progress the progress that the {@code ProgressBar} should be set to
-	 * 
+	 *
 	 */
 
 	public void setProgressBar(final ProgressBar progressBar,final int progress) {
@@ -95,6 +97,7 @@ class Setter{
 
 			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					try{
@@ -111,7 +114,7 @@ class Setter{
 	 *
 	 * @param slidingDrawer the {@link SlidingDrawer}
 	 * @param status the status that the {@link SlidingDrawer} should be set to
-	 * 
+	 *
 	 */
 
 	public void setSlidingDrawer(final SlidingDrawer slidingDrawer, final int status){
@@ -119,6 +122,7 @@ class Setter{
 
 			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					try{

@@ -1,8 +1,9 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -316,7 +317,7 @@ class ViewFetcher {
 		allViews = null;
 		return filteredViews;
 	}
-	
+
 	/**
 	 * Returns a view.
 	 *
@@ -337,7 +338,7 @@ class ViewFetcher {
 
 			view.getLocationOnScreen(locationOnScreen);
 
-			if (locationOnScreen[0] < 0 ) 
+			if (locationOnScreen[0] < 0 )
 				continue;
 
 			if(view.getDrawingTime() > drawingTime && view.getHeight() > 0){
@@ -390,7 +391,7 @@ class ViewFetcher {
 		}
 		return null;
 	}
-	
+
 	private void setWindowManagerString(){
 
 		if(android.os.Build.VERSION.SDK_INT >= 13)

@@ -1,6 +1,7 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
+
 import junit.framework.Assert;
 import android.app.Activity;
 import android.view.View;
@@ -10,32 +11,32 @@ import android.widget.TextView;
 /**
  * Contains various get methods. Examples are: getView(int id),
  * getView(Class<T> classToFilterBy, int index).
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Getter {
-	
+
 	private final ActivityUtils activityUtils;
 	private final ViewFetcher viewFetcher;
 	private final Waiter waiter;
 
 	/**
 	 * Constructs this object.
-	 * 
+	 *
 	 * @param activityUtils the {@code ActivityUtil} instance.
 	 * @param viewFetcher the {@code ViewFetcher} instance.
      * @param waiter the {@code Waiter} instance
 	 */
-	
+
 	public Getter(ActivityUtils activityUtils, ViewFetcher viewFetcher, Waiter waiter){
 		this.activityUtils = activityUtils;
 		this.viewFetcher = viewFetcher;
 		this.waiter = waiter;
 	}
 
-	
+
 	/**
 	 * Returns a {@code View} with a certain index, from the list of current {@code View}s of the specified type.
 	 *
@@ -43,11 +44,11 @@ class Getter {
 	 * @param index choose among all instances of this type, e.g. {@code Button.class} or {@code EditText.class}
 	 * @return a {@code View} with a certain index, from the list of current {@code View}s of the specified type
 	 */
-	
+
 	public <T extends View> T getView(Class<T> classToFilterBy, int index) {
 		return waiter.waitForAndGetView(index, classToFilterBy);
 	}
-	
+
 	/**
 	 * Returns a {@code View} that shows a given text, from the list of current {@code View}s of the specified type.
 	 *
@@ -72,10 +73,10 @@ class Getter {
 
 		return viewToReturn;
 	}
-	
+
 	/**
 	 * Returns a {@code View} with a given id.
-	 * 
+	 *
 	 * @param id the R.id of the {@code View} to be returned
 	 * @return a {@code View} with a given id
 	 */

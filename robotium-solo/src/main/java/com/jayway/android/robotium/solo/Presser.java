@@ -1,16 +1,16 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
-import android.widget.Spinner;
 import junit.framework.Assert;
 import android.app.Instrumentation;
 import android.view.KeyEvent;
+import android.widget.Spinner;
 
 /**
  * Contains press methods. Examples are pressMenuItem(),
  * pressSpinnerItem().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Presser{
@@ -19,7 +19,7 @@ class Presser{
 	private final Instrumentation inst;
     private final Sleeper sleeper;
     private final Waiter waiter;
-    
+
 
     /**
      * Constructs this object.
@@ -38,31 +38,31 @@ class Presser{
         this.waiter = waiter;
     }
 
-	
+
 	/**
 	 * Presses a {@link android.view.MenuItem} with a given index. Index {@code 0} is the first item in the
 	 * first row, Index {@code 3} is the first item in the second row and
 	 * index {@code 5} is the first item in the third row.
 	 *
 	 * @param index the index of the {@code MenuItem} to be pressed
-	 * 
+	 *
 	 */
-	
+
 	public void pressMenuItem(int index){
 		pressMenuItem(index, 3);
 	}
-	
+
 	/**
 	 * Presses a {@link android.view.MenuItem} with a given index. Supports three rows with a given amount
-	 * of items. If itemsPerRow equals 5 then index 0 is the first item in the first row, 
+	 * of items. If itemsPerRow equals 5 then index 0 is the first item in the first row,
 	 * index 5 is the first item in the second row and index 10 is the first item in the third row.
-	 * 
+	 *
 	 * @param index the index of the {@code MenuItem} to be pressed
-	 * @param itemsPerRow the amount of menu items there are per row.   
-	 * 
+	 * @param itemsPerRow the amount of menu items there are per row.
+	 *
 	 */
-	
-	public void pressMenuItem(int index, int itemsPerRow) {	
+
+	public void pressMenuItem(int index, int itemsPerRow) {
 		int[] row = new int[4];
 		for(int i = 1; i <=3; i++)
 			row[i] = itemsPerRow*i;
@@ -82,15 +82,15 @@ class Presser{
 				inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_RIGHT);
 			}
 		} else if (index >= row[1] && index < row[2]) {
-			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_DOWN);	
+			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_DOWN);
 
 			for (int i = row[1]; i < index; i++) {
 				sleeper.sleepMini();
 				inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_RIGHT);
 			}
 		} else if (index >= row[2]) {
-			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_DOWN);	
-			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_DOWN);	
+			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_DOWN);
+			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_DOWN);
 
 			for (int i = row[2]; i < index; i++) {
 				sleeper.sleepMini();
@@ -113,7 +113,7 @@ class Presser{
 	 */
 
 	public void pressSpinnerItem(int spinnerIndex, int itemIndex)
-	{	
+	{
 		clicker.clickOnScreen(waiter.waitForAndGetView(spinnerIndex, Spinner.class));
 		sleeper.sleep();
 		try{

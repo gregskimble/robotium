@@ -1,4 +1,4 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import junit.framework.Assert;
 import android.app.Activity;
@@ -6,7 +6,7 @@ import android.app.ActivityManager;
 
 /**
  * Contains assert methods examples are assertActivity() and assertLowMemory().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
  *
  */
@@ -58,34 +58,34 @@ class Asserter {
 				.getCurrentActivity().getClass().getName());
 
 	}
-	
+
 	/**
 	 * Asserts that an expected {@link Activity} is currently active one, with the possibility to
 	 * verify that the expected {@code Activity} is a new instance of the {@code Activity}.
-	 * 
+	 *
 	 * @param message the message that should be displayed if the assert fails
 	 * @param name the name of the {@code Activity} that is expected to be active e.g. {@code "MyActivity"}
 	 * @param isNewInstance {@code true} if the expected {@code Activity} is a new instance of the {@code Activity}
-	 * 
+	 *
 	 */
-	
+
 	public void assertCurrentActivity(String message, String name, boolean isNewInstance)
 	{
 		assertCurrentActivity(message, name);
 		assertCurrentActivity(message, activityUtils.getCurrentActivity().getClass(),
 				isNewInstance);
 	}
-	
+
 	/**
 	 * Asserts that an expected {@link Activity} is currently active one, with the possibility to
 	 * verify that the expected {@code Activity} is a new instance of the {@code Activity}.
-	 * 
+	 *
 	 * @param message the message that should be displayed if the assert fails
 	 * @param expectedClass the {@code Class} object that is expected to be active e.g. {@code MyActivity.class}
 	 * @param isNewInstance {@code true} if the expected {@code Activity} is a new instance of the {@code Activity}
-	 * 
+	 *
 	 */
-	
+
 	public void assertCurrentActivity(String message, Class<? extends Activity> expectedClass,
 			boolean isNewInstance) {
 		boolean found = false;
@@ -98,12 +98,12 @@ class Asserter {
 		}
 			Assert.assertNotSame(message + ", isNewInstance: actual and ", isNewInstance, found);
 	}
-	
+
 	/**
 	 * Asserts that the available memory in the system is not low.
-	 * 
+	 *
 	 */
-	
+
 	public void assertMemoryNotLow()
 	{
 		ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();

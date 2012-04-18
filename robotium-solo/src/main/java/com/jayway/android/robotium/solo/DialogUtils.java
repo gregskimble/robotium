@@ -1,26 +1,26 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import android.os.SystemClock;
 
 
 /**
  * Contains the waitForDialogToClose() method.
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class DialogUtils {
-	
+
 	private final ViewFetcher viewFetcher;
     private final Sleeper sleeper;
 
 	/**
 	 * Constructs this object.
-	 * 
+	 *
 	 * @param viewFetcher the {@code ViewFetcher} instance.
      * @param sleeper the {@code Sleeper} instance.
-	 * 
+	 *
 	 */
 
 	public DialogUtils(ViewFetcher viewFetcher, Sleeper sleeper) {

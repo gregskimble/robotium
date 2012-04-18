@@ -1,10 +1,10 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
-import android.widget.*;
+
 import junit.framework.Assert;
 import android.app.Instrumentation;
 import android.os.SystemClock;
@@ -13,13 +13,15 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Contains various click methods. Examples are: clickOn(),
  * clickOnText(), clickOnScreen().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Clicker {
@@ -38,7 +40,7 @@ class Clicker {
 
 	/**
 	 * Constructs this object.
-	 * 
+	 *
 	 * @param viewFetcher the {@code ViewFetcher} instance.
 	 * @param scroller the {@code Scroller} instance.
 	 * @param robotiumUtils the {@code RobotiumUtils} instance.
@@ -102,7 +104,7 @@ class Clicker {
 			Assert.assertTrue("Click can not be completed! Something is in the way e.g. the keyboard.", false);
 		}
 		eventTime = SystemClock.uptimeMillis();
-		event = MotionEvent.obtain(downTime, eventTime, MotionEvent.ACTION_MOVE, 
+		event = MotionEvent.obtain(downTime, eventTime, MotionEvent.ACTION_MOVE,
 				x + ViewConfiguration.getTouchSlop() / 2,
 				y + ViewConfiguration.getTouchSlop() / 2, 0);
 		inst.sendPointerSync(event);
@@ -186,11 +188,11 @@ class Clicker {
 	/**
 	 * Clicks on a menu item with a given text
 	 * @param text the menu text that should be clicked on. The parameter <strong>will</strong> be interpreted as a regular expression.
-	 * 
+	 *
 	 */
 
 	public void clickOnMenuItem(String text)
-	{	
+	{
 		sleeper.sleep();
 		try{
 			robotiumUtils.sendKeyCode(KeyEvent.KEYCODE_MENU);
@@ -202,10 +204,10 @@ class Clicker {
 
 	/**
 	 * Clicks on a menu item with a given text
-	 * 
+	 *
 	 * @param text the menu text that should be clicked on. The parameter <strong>will</strong> be interpreted as a regular expression.
 	 * @param subMenu true if the menu item could be located in a sub menu
-	 * 
+	 *
 	 */
 
 	public void clickOnMenuItem(String text, boolean subMenu)
@@ -327,7 +329,7 @@ class Clicker {
 	/**
 	 * Clicks on a certain list line and returns the {@link TextView}s that
 	 * the list line is showing. Will use the first list it finds.
-	 * 
+	 *
 	 * @param line the line that should be clicked
 	 * @return a {@code List} of the {@code TextView}s located in the list line
 	 */
@@ -339,13 +341,13 @@ class Clicker {
 	/**
 	 * Clicks on a certain list line on a specified List and
 	 * returns the {@link TextView}s that the list line is showing.
-	 * 
+	 *
 	 * @param line the line that should be clicked
 	 * @param index the index of the list. E.g. Index 1 if two lists are available
 	 * @return an {@code ArrayList} of the {@code TextView}s located in the list line
 	 */
 
-	public ArrayList<TextView> clickInList(int line, int index, boolean longClick, int time) {	
+	public ArrayList<TextView> clickInList(int line, int index, boolean longClick, int time) {
 		line--;
 		if(line < 0)
 			line = 0;

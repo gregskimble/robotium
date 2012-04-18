@@ -1,10 +1,11 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Callable;
+
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +14,9 @@ import android.widget.TextView;
 /**
  * Contains various search methods. Examples are: searchForEditTextWithTimeout(),
  * searchForTextWithTimeout(), searchForButtonWithTimeout().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class Searcher {
@@ -54,7 +55,7 @@ class Searcher {
 	 * matches are expected to be found
 	 * @param scroll whether scrolling should be performed
 	 * @param onlyVisible {@code true} if only texts visible on the screen should be searched
-	 * 
+	 *
 	 * @return {@code true} if a {@code View} of the specified class with the given text is found a given number of
 	 * times, and {@code false} if it is not found
 	 *
@@ -84,7 +85,7 @@ class Searcher {
 	 * matches are expected to be found.
 	 * @param scroll whether scrolling should be performed
 	 * @param onlyVisible {@code true} if only texts visible on the screen should be searched
-	 * 
+	 *
 	 * @return {@code true} if a view of the specified class with the given text is found a given number of times.
 	 * {@code false} if it is not found.
 	 *
@@ -92,6 +93,7 @@ class Searcher {
 
 	public <T extends TextView> boolean searchFor(final Class<T> viewClass, final String regex, final int expectedMinimumNumberOfMatches, final boolean scroll, final boolean onlyVisible) {
 		final Callable<Collection<T>> viewFetcherCallback = new Callable<Collection<T>>() {
+			@Override
 			public Collection<T> call() throws Exception {
 				sleeper.sleep();
 
@@ -108,17 +110,17 @@ class Searcher {
 		}
 
 	}
-	
+
 	/**
 	 * Searches for a view class
-	 * 
+	 *
 	 * @param uniqueViews the set of unique views
 	 * @param viewClass the view class to search for
 	 * @param index the index of the view class
 	 * @return true if view class if found a given number of times
-	 * 
+	 *
 	 */
-	
+
 	public <T extends View> boolean searchFor(Set<T> uniqueViews, Class<T> viewClass, final int index) {
 		ArrayList<T> allViews = RobotiumUtils.removeInvisibleViews(viewFetcher.getCurrentViews(viewClass));
 
@@ -132,10 +134,10 @@ class Searcher {
 
 		return setArrayToNullAndReturn(false, allViews);
 	}
-	
+
 	/**
 	 * Sets the given array to null while returning desired boolean
-	 * 
+	 *
 	 * @param booleanToReturn the desired boolean to return
 	 * @param views the array to null
 	 * @return the desired boolean
@@ -145,15 +147,15 @@ class Searcher {
 		views = null;
 		return booleanToReturn;
 	}
-	
+
 	/**
 	 * Searches for a given view
-	 * 
+	 *
 	 * @param view the view to search
 	 * @param scroll true if scrolling should be performed
 	 * @return true if view is found
 	 */
-	
+
 	public <T extends View> boolean searchFor(View view) {
 		 ArrayList<View> views = viewFetcher.getAllViews(true);
 			for(View v : views){
@@ -186,7 +188,7 @@ class Searcher {
 			expectedMinimumNumberOfMatches = 1;
 		}
 		Collection<T> views;
-		while (true) {	
+		while (true) {
 			views = viewFetcherCallback.call();
 			for(TextView view : views){
 				if (RobotiumUtils.checkAndGetMatches(regex, view, uniqueTextViews) == expectedMinimumNumberOfMatches) {
@@ -206,13 +208,13 @@ class Searcher {
 
 
 	/**
-	 * Returns the number of unique views 
-	 * 
+	 * Returns the number of unique views
+	 *
 	 * @param uniqueViews the set of unique views
 	 * @param views the list of all views
-	 * 
+	 *
 	 * @return number of unique views
-	 * 
+	 *
 	 */
 
 	public <T extends View> int getNumberOfUniqueViews(Set<T>uniqueViews, ArrayList<T> views){
@@ -225,9 +227,9 @@ class Searcher {
 
 	/**
 	 * Returns the number of unique views
-	 * 
+	 *
 	 * @return the number of unique views
-	 * 
+	 *
 	 */
 
 	public int getNumberOfUniqueViews(){
@@ -235,9 +237,9 @@ class Searcher {
 	}
 
 	/**
-	 * Logs a (searchFor failed) message 
+	 * Logs a (searchFor failed) message
 	 * @param regex the search string to log
-	 * 
+	 *
 	 */
 
 	private boolean logMatchesFoundAndReturnFalse(String regex){

@@ -1,10 +1,11 @@
-package com.jayway.android.robotium.solo;
+package main.java.com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import junit.framework.Assert;
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -16,9 +17,9 @@ import android.view.KeyEvent;
 /**
  * Contains activity related methods. Examples are:
  * getCurrentActivity(), getActivityList(), getAllOpenedActivities().
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
 class ActivityUtils {
@@ -51,9 +52,9 @@ class ActivityUtils {
 		setupActivityMonitor();
 		setupActivityStackListener();
 	}
-	
+
 	/**
-	 * Creates a new activity stack and pushes the start activity 
+	 * Creates a new activity stack and pushes the start activity
 	 */
 	private void createStackAndPushStartActivity(){
 		activityStack = new Stack<Activity>();
@@ -63,9 +64,9 @@ class ActivityUtils {
 
 	/**
 	 * Returns a {@code List} of all the opened/active activities.
-	 * 
+	 *
 	 * @return a {@code List} of all the opened/active activities
-	 * 
+	 *
 	 */
 
 	public ArrayList<Activity> getAllOpenedActivities()
@@ -117,7 +118,7 @@ class ActivityUtils {
 
 	/**
 	 * Returns the ActivityMonitor used by Robotium.
-	 * 
+	 *
 	 * @return the ActivityMonitor used by Robotium
 	 */
 
@@ -127,15 +128,15 @@ class ActivityUtils {
 
 	/**
 	 * Sets the Orientation (Landscape/Portrait) for the current activity.
-	 * 
+	 *
 	 * @param orientation An orientation constant such as {@link android.content.pm.ActivityInfo#SCREEN_ORIENTATION_LANDSCAPE} or {@link android.content.pm.ActivityInfo#SCREEN_ORIENTATION_PORTRAIT}.
-	 *  
+	 *
 	 */
 
 	public void setActivityOrientation(int orientation)
 	{
 		Activity activity = getCurrentActivity();
-		activity.setRequestedOrientation(orientation);	
+		activity.setRequestedOrientation(orientation);
 	}
 
 	/**
@@ -193,13 +194,13 @@ class ActivityUtils {
 	 * Returns to the given {@link Activity}.
 	 *
 	 * @param name the name of the {@code Activity} to return to, e.g. {@code "MyActivity"}
-	 * 
+	 *
 	 */
 
 	public void goBackToActivity(String name)
 	{
 		ArrayList<Activity> activitiesOpened = getAllOpenedActivities();
-		boolean found = false;	
+		boolean found = false;
 		for(int i = 0; i < activitiesOpened.size(); i++){
 			if(activitiesOpened.get(i).getClass().getSimpleName().equals(name)){
 				found = true;
@@ -211,7 +212,7 @@ class ActivityUtils {
 			{
 				try{
 					inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
-				}catch(SecurityException ignored){}	
+				}catch(SecurityException ignored){}
 			}
 		}
 		else{
@@ -223,10 +224,10 @@ class ActivityUtils {
 
 	/**
 	 * Returns a localized string
-	 * 
+	 *
 	 * @param resId the resource ID for the string
 	 * @return the localized string
-	 * 
+	 *
 	 */
 
 	public String getString(int resId)
@@ -239,8 +240,9 @@ class ActivityUtils {
 	 *
 	 * Finalizes the solo object.
 	 *
-	 */  
+	 */
 
+	@Override
 	public void finalize() throws Throwable {
 		try {
 			// Remove the monitor added during startup
@@ -250,7 +252,7 @@ class ActivityUtils {
 		} catch (Exception ignored) {}
 		super.finalize();
 	}
-	
+
 	/**
 	 * All inactive activities are finished.
 	 */
@@ -296,7 +298,7 @@ class ActivityUtils {
 
 	/**
 	 * Finishes an activity
-	 * 
+	 *
 	 * @param activity the activity to finish
 	 */
 
@@ -307,5 +309,5 @@ class ActivityUtils {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
